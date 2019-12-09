@@ -2,6 +2,14 @@
 
 function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
 
+function _toConsumableArray(arr) { return _arrayWithoutHoles(arr) || _iterableToArray(arr) || _nonIterableSpread(); }
+
+function _nonIterableSpread() { throw new TypeError("Invalid attempt to spread non-iterable instance"); }
+
+function _iterableToArray(iter) { if (Symbol.iterator in Object(iter) || Object.prototype.toString.call(iter) === "[object Arguments]") return Array.from(iter); }
+
+function _arrayWithoutHoles(arr) { if (Array.isArray(arr)) { for (var i = 0, arr2 = new Array(arr.length); i < arr.length; i++) { arr2[i] = arr[i]; } return arr2; } }
+
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
 function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
@@ -10,68 +18,62 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
 
 function _possibleConstructorReturn(self, call) { if (call && (_typeof(call) === "object" || typeof call === "function")) { return call; } return _assertThisInitialized(self); }
 
-function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf : function _getPrototypeOf(o) { return o.__proto__ || Object.getPrototypeOf(o); }; return _getPrototypeOf(o); }
-
 function _assertThisInitialized(self) { if (self === void 0) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return self; }
+
+function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf : function _getPrototypeOf(o) { return o.__proto__ || Object.getPrototypeOf(o); }; return _getPrototypeOf(o); }
 
 function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function"); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, writable: true, configurable: true } }); if (superClass) _setPrototypeOf(subClass, superClass); }
 
 function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || function _setPrototypeOf(o, p) { o.__proto__ = p; return o; }; return _setPrototypeOf(o, p); }
 
-var Counter =
+var ListingApp =
 /*#__PURE__*/
 function (_React$Component) {
-  _inherits(Counter, _React$Component);
+  _inherits(ListingApp, _React$Component);
 
-  function Counter() {
+  function ListingApp() {
     var _this;
 
-    _classCallCheck(this, Counter);
+    _classCallCheck(this, ListingApp);
 
-    _this = _possibleConstructorReturn(this, _getPrototypeOf(Counter).call(this));
-    _this.onIncrease = _this.onIncrease.bind(_assertThisInitialized(_this));
-    _this.onDecrease = _this.onDecrease.bind(_assertThisInitialized(_this));
+    _this = _possibleConstructorReturn(this, _getPrototypeOf(ListingApp).call(this));
     _this.state = {
-      count: 1
+      cities: []
     };
     return _this;
   }
 
-  _createClass(Counter, [{
-    key: "onDecrease",
-    value: function onDecrease() {
+  _createClass(ListingApp, [{
+    key: "onSubmit",
+    value: function onSubmit(e) {
+      e.preventDefault();
+      console.log(e);
+      var newCity = e.target.elements.city.value;
+      console.log(newCity);
       this.setState(function (prevState) {
+        // Concat
+        // const newArray = prevState.cities.concat([newCity])
+        // Spread Operator
+        var cities = [].concat(_toConsumableArray(prevState.cities), [newCity]);
         return {
-          count: prevState.count - 1
+          cities: cities
         };
-      });
-    }
-  }, {
-    key: "onIncrease",
-    value: function onIncrease() {
-      var _this2 = this;
-
-      this.setState(function (prevState) {
-        return {
-          count: prevState.count + 1
-        };
-      }, function () {
-        console.log('arttır!', _this2.state.count);
       });
     }
   }, {
     key: "render",
     value: function render() {
-      return React.createElement(React.Fragment, null, React.createElement("h1", null, "Hello React"), React.createElement("p", null, "Current Count: ", this.state.count), React.createElement("button", {
-        onClick: this.onDecrease
-      }, "Azalt"), React.createElement("button", {
-        onClick: this.onIncrease
-      }, "Artt\u0131r"));
+      return React.createElement(React.Fragment, null, React.createElement("h1", null, "Hello Listing"), React.createElement("div", null, React.createElement("form", {
+        onSubmit: this.onSubmit
+      }, React.createElement("input", {
+        placeholder: "\u015Eehir ismi yaz\u0131n..",
+        name: "city"
+      }), React.createElement("button", null, "Listeye Ekle"))));
     }
   }]);
 
-  return Counter;
+  return ListingApp;
 }(React.Component);
 
 var root = document.getElementById('app');
-ReactDOM.render(React.createElement(Counter, null), root);
+ReactDOM.render(React.createElement(ListingApp, null), root);

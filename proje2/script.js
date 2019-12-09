@@ -18,9 +18,9 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
 
 function _possibleConstructorReturn(self, call) { if (call && (_typeof(call) === "object" || typeof call === "function")) { return call; } return _assertThisInitialized(self); }
 
-function _assertThisInitialized(self) { if (self === void 0) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return self; }
-
 function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf : function _getPrototypeOf(o) { return o.__proto__ || Object.getPrototypeOf(o); }; return _getPrototypeOf(o); }
+
+function _assertThisInitialized(self) { if (self === void 0) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return self; }
 
 function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function"); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, writable: true, configurable: true } }); if (superClass) _setPrototypeOf(subClass, superClass); }
 
@@ -37,6 +37,7 @@ function (_React$Component) {
     _classCallCheck(this, ListingApp);
 
     _this = _possibleConstructorReturn(this, _getPrototypeOf(ListingApp).call(this));
+    _this.onSubmit = _this.onSubmit.bind(_assertThisInitialized(_this));
     _this.state = {
       cities: []
     };
@@ -44,26 +45,67 @@ function (_React$Component) {
   }
 
   _createClass(ListingApp, [{
+    key: "componentDidMount",
+    value: function componentDidMount() {
+      var citiesStr = sessionStorage.getItem('cities');
+
+      if (citiesStr != undefined) {
+        var cities = JSON.parse(citiesStr);
+        this.setState(function () {
+          return {
+            cities: cities
+          };
+        });
+      }
+    }
+  }, {
+    key: "onRemove",
+    value: function onRemove(index) {
+      var _this2 = this;
+
+      this.setState(function (prevState) {
+        var cities = prevState.cities;
+        var deletedItem = cities.splice(index, 1);
+        return {
+          cities: cities
+        };
+      }, function () {
+        var str = JSON.stringify(_this2.state.cities);
+        sessionStorage.setItem('cities', str);
+      });
+    }
+  }, {
     key: "onSubmit",
     value: function onSubmit(e) {
+      var _this3 = this;
+
       e.preventDefault();
-      console.log(e);
       var newCity = e.target.elements.city.value;
-      console.log(newCity);
+      e.target.elements.city.value = '';
       this.setState(function (prevState) {
-        // Concat
-        // const newArray = prevState.cities.concat([newCity])
-        // Spread Operator
         var cities = [].concat(_toConsumableArray(prevState.cities), [newCity]);
         return {
           cities: cities
         };
+      }, function () {
+        var str = JSON.stringify(_this3.state.cities);
+        sessionStorage.setItem('cities', str);
       });
     }
   }, {
     key: "render",
     value: function render() {
-      return React.createElement(React.Fragment, null, React.createElement("h1", null, "Hello Listing"), React.createElement("div", null, React.createElement("form", {
+      var _this4 = this;
+
+      return React.createElement(React.Fragment, null, React.createElement("h1", null, "Hello Listing"), React.createElement("div", null, this.state.cities.length > 0 ? React.createElement("ul", null, this.state.cities.map(function (item, index) {
+        return React.createElement("li", {
+          key: index
+        }, item, React.createElement("button", {
+          onClick: function onClick() {
+            _this4.onRemove(index);
+          }
+        }, "S\u0130L"));
+      })) : React.createElement("p", null, "L\xFCtfen \u015Fehir ekleyin"), React.createElement("form", {
         onSubmit: this.onSubmit
       }, React.createElement("input", {
         placeholder: "\u015Eehir ismi yaz\u0131n..",

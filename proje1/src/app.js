@@ -4,10 +4,20 @@ class Counter extends React.Component {
         super()
 
         this.onIncrease = this.onIncrease.bind(this)
+        this.onDecrease = this.onDecrease.bind(this)
 
         this.state = {
             count: 1
         }
+    }
+
+    onDecrease () {
+
+        this.setState((prevState) => {
+            return {
+                count: prevState.count-1
+            }
+        })
     }
 
     onIncrease () {
@@ -26,12 +36,12 @@ class Counter extends React.Component {
     render () {
 
         return (
-            <div>
+            <>
                 <h1>Hello React</h1>
                 <p>Current Count: {this.state.count}</p>
                 <button onClick={this.onDecrease}>Azalt</button>
                 <button onClick={this.onIncrease}>Arttır</button>
-            </div>
+            </>
         )
     }
 }

@@ -30,6 +30,7 @@ function (_React$Component) {
 
     _this = _possibleConstructorReturn(this, _getPrototypeOf(Counter).call(this));
     _this.onIncrease = _this.onIncrease.bind(_assertThisInitialized(_this));
+    _this.onDecrease = _this.onDecrease.bind(_assertThisInitialized(_this));
     _this.state = {
       count: 1
     };
@@ -37,6 +38,15 @@ function (_React$Component) {
   }
 
   _createClass(Counter, [{
+    key: "onDecrease",
+    value: function onDecrease() {
+      this.setState(function (prevState) {
+        return {
+          count: prevState.count - 1
+        };
+      });
+    }
+  }, {
     key: "onIncrease",
     value: function onIncrease() {
       var _this2 = this;
@@ -52,7 +62,7 @@ function (_React$Component) {
   }, {
     key: "render",
     value: function render() {
-      return React.createElement("div", null, React.createElement("h1", null, "Hello React"), React.createElement("p", null, "Current Count: ", this.state.count), React.createElement("button", {
+      return React.createElement(React.Fragment, null, React.createElement("h1", null, "Hello React"), React.createElement("p", null, "Current Count: ", this.state.count), React.createElement("button", {
         onClick: this.onDecrease
       }, "Azalt"), React.createElement("button", {
         onClick: this.onIncrease

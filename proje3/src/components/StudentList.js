@@ -42,18 +42,53 @@ export default class StudentList extends React.Component {
         e.target.elements.lastName.value = ''
         e.target.elements.classroom.value = ''
 
-        const newStudent = {
-            _id: uuid(),
-            firstName,
-            lastName,
-            classroom
-        }
+        if (this.state.editingStudent == undefined) {
 
-        this.setState((prevState) => {
-            return {
-                students: [...prevState.students, newStudent]
+            const newStudent = {
+                _id: uuid(),
+                firstName,
+                lastName,
+                classroom
             }
-        })
+    
+            this.setState((prevState) => {
+                return {
+                    students: [...prevState.students, newStudent]
+                }
+            })
+        } else {
+
+            const editedStudent = {
+                firstName,
+                lastName,
+                classroom
+            }
+    
+            this.setState((prevState) => {
+
+                const students = prevState.students.map((student) => {
+
+                    if (this.state.editingStudent._id == student._id) {
+
+                        const editedItem = {
+                            ...student,
+                            ...editedStudent
+                        }
+
+                        return editedItem
+                    }
+
+                    return student
+                })
+
+                console.log(students)
+
+                return {
+                    students,
+                    editingStudent: undefined
+                }
+            })
+        }
     }
 
     onEdit (studentId) {
@@ -112,9 +147,9 @@ export default class StudentList extends React.Component {
                         </table>
                     </div>
                     <form onSubmit={this.onSubmit}>
-                        <input name="firstName" placeholder="Ad yazın.." /><br />
-                        <input name="lastName" placeholder="Soyad yazın.." /><br />
-                        <input name="classroom" placeholder="Sınıf yazın.." /><br />
+                        <input name="firstName" placeholder="Ad yazın.." defaultValue={this.state.editingStudent != undefined ? this.state.editingStudent.firstName : ''} /><br />
+                        <input name="lastName" placeholder="Soyad yazın.." defaultValue={this.state.editingStudent != undefined ? this.state.editingStudent.lastName : ''} /><br />
+                        <input name="classroom" placeholder="Sınıf yazın.." defaultValue={this.state.editingStudent != undefined ? this.state.editingStudent.classroom : ''} /><br />
                         <button>{this.state.editingStudent == undefined ? 'Ekle' : 'Güncelle'}</button>
                     </form>
                 </div>

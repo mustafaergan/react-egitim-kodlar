@@ -1,16 +1,51 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
+import uuid from 'uuid'
 
-class StudenList extends React.Component {
+class StudentRow extends React.Component {
+
+    render () {
+
+        return (
+            <tr>
+                <td>{this.props.student.firstName}</td>
+                <td>{this.props.student.lastName}</td>
+                <td>{this.props.student.classroom}</td>
+                <td>
+                    <button onClick={() => {
+                        this.props.onRemove(this.props.student._id)
+                    }}>SİL</button>
+                </td>
+            </tr>
+        )
+    }
+}
+
+class StudentList extends React.Component {
 
     constructor () {
         super()
 
         this.onSubmit = this.onSubmit.bind(this)
+        this.onRemove = this.onRemove.bind(this)
 
         this.state = {
-            students: []
+            students: [{
+                _id: uuid(),
+                firstName: "Kaan",
+                lastName: "Ertem",
+                classroom: "arılar"
+            },{
+                _id: uuid(),
+                firstName: "Leyla",
+                lastName: "Tekin",
+                classroom: "kelebekler"
+            }]
         }
+    }
+
+    componentDidMount () {
+        console.log('students', this.state.students)
     }
 
     onSubmit (e) {
@@ -25,6 +60,7 @@ class StudenList extends React.Component {
         e.target.elements.classroom.value = ''
 
         const newStudent = {
+            _id: uuid(),
             firstName,
             lastName,
             classroom
@@ -37,6 +73,20 @@ class StudenList extends React.Component {
         })
     }
 
+    onRemove (studentId) {
+
+        this.setState((prevState) => {
+
+            const students = prevState.students.filter((student) => {
+                return student._id != studentId
+            })
+
+            return {
+                students
+            }
+        })
+    }
+
     render () {
 
         return (
@@ -45,22 +95,24 @@ class StudenList extends React.Component {
                 <div>
                     <div>
                         <table>
-                            <tr>
-                                <td>Ad</td>
-                                <td>Soyad</td>
-                                <td>Sınıf</td>
-                            </tr>
-                            {
-                                this.state.students.map((student) => {
-                                    return (
-                                        <tr>
-                                            <td>{student.firstName}</td>
-                                            <td>{student.lastName}</td>
-                                            <td>{student.classroom}</td>
-                                        </tr>
-                                    )
-                                })
-                            }
+                            <tbody>
+                                <tr>
+                                    <td>Ad</td>
+                                    <td>Soyad</td>
+                                    <td>Sınıf</td>
+                                </tr>
+                                {
+                                    this.state.students.map((student,index) => {
+                                        return (
+                                            <StudentRow
+                                                key={index}
+                                                student={student}
+                                                onRemove={this.onRemove}
+                                            />
+                                        )
+                                    })
+                                }
+                            </tbody>
                         </table>
                     </div>
                     <form onSubmit={this.onSubmit}>
@@ -76,4 +128,4 @@ class StudenList extends React.Component {
 }
 
 var root = document.getElementById('app')
-ReactDOM.render(<StudenList />, root)
+ReactDOM.render(<StudentList />, root)

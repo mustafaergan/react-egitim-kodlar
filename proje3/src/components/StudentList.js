@@ -1,6 +1,7 @@
 import React from 'react'
 import uuid from 'uuid'
 import StudentRow from './StudentRow'
+import NewForm from './NewForm'
 
 export default class StudentList extends React.Component {
 
@@ -120,6 +121,8 @@ export default class StudentList extends React.Component {
 
     render () {
 
+        const {students, editingStudent} = this.state
+
         return (
             <>
                 <div>
@@ -132,7 +135,7 @@ export default class StudentList extends React.Component {
                                     <td>Sınıf</td>
                                 </tr>
                                 {
-                                    this.state.students.map((student,index) => {
+                                    students.map((student,index) => {
                                         return (
                                             <StudentRow
                                                 key={index}
@@ -146,16 +149,12 @@ export default class StudentList extends React.Component {
                             </tbody>
                         </table>
                     </div>
-                    <form onSubmit={this.onSubmit}>
-                        <input name="firstName" placeholder="Ad yazın.." defaultValue={this.state.editingStudent != undefined ? this.state.editingStudent.firstName : ''} /><br />
-                        <input name="lastName" placeholder="Soyad yazın.." defaultValue={this.state.editingStudent != undefined ? this.state.editingStudent.lastName : ''} /><br />
-                        <input name="classroom" placeholder="Sınıf yazın.." defaultValue={this.state.editingStudent != undefined ? this.state.editingStudent.classroom : ''} /><br />
-                        <button>{this.state.editingStudent == undefined ? 'Ekle' : 'Güncelle'}</button>
-                    </form>
+                    <NewForm
+                        onSubmit={this.onSubmit}
+                        editedStudent={editingStudent}
+                    />
                 </div>
             </>
         )
     }
 }
-
-// export default StudentList

@@ -34,6 +34,11 @@ export default (props) => {
                     props.onRemove(props.student._id)
                 }}>SİL</button>
             </td>
+            <td>
+            <button onClick={() => {
+                    props.onEdit(props.student._id)
+                }}>EDIT</button>
+            </td>
         </tr>
     )
 }

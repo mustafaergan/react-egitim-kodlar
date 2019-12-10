@@ -149,10 +149,6 @@ export default class StudentList extends React.Component {
                             </tbody>
                         </table>
                     </div>
-                    <NewForm
-                        onSubmit={this.onSubmit}
-                        editedStudent={editingStudent}
-                    />
                 </div>
             </>
         )

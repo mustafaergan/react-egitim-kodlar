@@ -9,6 +9,7 @@ export default class StudentList extends React.Component {
 
         this.onSubmit = this.onSubmit.bind(this)
         this.onRemove = this.onRemove.bind(this)
+        this.onEdit = this.onEdit.bind(this)
 
         this.state = {
             students: [{
@@ -21,7 +22,8 @@ export default class StudentList extends React.Component {
                 firstName: "Leyla",
                 lastName: "Tekin",
                 classroom: "kelebekler"
-            }]
+            }],
+            editingStudent: undefined
         }
     }
 
@@ -50,6 +52,19 @@ export default class StudentList extends React.Component {
         this.setState((prevState) => {
             return {
                 students: [...prevState.students, newStudent]
+            }
+        })
+    }
+
+    onEdit (studentId) {
+
+        const editingStudent = this.state.students.find((student) => {
+            return student._id == studentId
+        })
+
+        this.setState(() => {
+            return {
+                editingStudent
             }
         })
     }
@@ -88,6 +103,7 @@ export default class StudentList extends React.Component {
                                                 key={index}
                                                 student={student}
                                                 onRemove={this.onRemove}
+                                                onEdit={this.onEdit}
                                             />
                                         )
                                     })
@@ -99,7 +115,7 @@ export default class StudentList extends React.Component {
                         <input name="firstName" placeholder="Ad yazın.." /><br />
                         <input name="lastName" placeholder="Soyad yazın.." /><br />
                         <input name="classroom" placeholder="Sınıf yazın.." /><br />
-                        <button>Ekle</button>
+                        <button>{this.state.editingStudent == undefined ? 'Ekle' : 'Güncelle'}</button>
                     </form>
                 </div>
             </>

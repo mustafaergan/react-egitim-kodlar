@@ -13,6 +13,9 @@ const App = () => {
             <Switch>
                 <Route path="/" component={Dashboard} exact={true} />
                 <Route path="/add" component={AddNew} />
+                <Route render={() => {
+                    return (<h1>Böyle bir sayfa yok</h1>)
+                }} />
             </Switch>
         </BrowserRouter>
     )

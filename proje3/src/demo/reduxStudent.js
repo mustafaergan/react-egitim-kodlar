@@ -13,7 +13,7 @@ const demoState = [{
     classroom: "kelebekler"
 }]
 
-const store = createStore((state=demoState,action) => {
+const studentReducer = (state=demoState,action) => {
 
     switch (action.type) {
 
@@ -41,7 +41,9 @@ const store = createStore((state=demoState,action) => {
         default: 
             return state
     }
-})
+}
+
+const store = createStore(studentReducer)
 
 console.log('güncel', store.getState())
 

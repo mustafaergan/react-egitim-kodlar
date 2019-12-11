@@ -8,7 +8,7 @@ class Dashboard extends Component {
         return (
             <>
                 <h1>Dashboard</h1>
-                <StudentList />
+                <StudentList history={this.props.history} />
             </>
         )
     }

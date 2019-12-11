@@ -1,7 +1,7 @@
 import React from 'react'
 import NewForm from './NewForm'
 import {connect} from 'react-redux'
-import {addAction} from '../actions/actions'
+import {addAction,editAction} from '../actions/actions'
 
 class AddNew extends React.Component {
 
@@ -22,19 +22,27 @@ class AddNew extends React.Component {
         e.target.elements.lastName.value = ''
         e.target.elements.classroom.value = ''
 
-        const {history,addNewStudent} = this.props
+        const {history,addNewStudent,editStudent} = this.props
 
-        // dispatch(addAction({
-        //     firstName,
-        //     lastName,
-        //     classroom
-        // }))
+        const editingId = this.props.match.params.id
 
-        addNewStudent({
-            firstName,
-            lastName,
-            classroom
-        })
+        if (editingId == undefined) {
+
+            addNewStudent({
+                firstName,
+                lastName,
+                classroom
+            })
+            
+        } else {
+
+            editStudent(editingId,{
+                firstName,
+                lastName,
+                classroom
+            })
+        }
+
 
         history.push('/')
     }
@@ -46,10 +54,18 @@ class AddNew extends React.Component {
 
     render () {
 
+        const editingId = this.props.match.params.id
+        const editingStudent = this.props.students.find((student) => {
+            return student._id == editingId
+        })
+
         return (
             <>
-                <h1>Yeni Ekle</h1>
-                <NewForm onSubmit={this.onSubmit} />
+                <h1>{editingId == undefined ? 'Yeni Ekle' : `Editing: ${editingStudent.firstName}`}</h1>
+                <NewForm 
+                    onSubmit={this.onSubmit} 
+                    editingStudent={editingStudent} 
+                />
             </>
         )
     }
@@ -57,8 +73,15 @@ class AddNew extends React.Component {
 
 const mapDispatchToProps = (dispatch) => {
     return {
-        addNewStudent: (data) => {dispatch(addAction(data))}
+        addNewStudent: (data) => {dispatch(addAction(data))},
+        editStudent: (editingId,data) => {dispatch(editAction(editingId,data))}
     }
 }
 
-export default connect(undefined,mapDispatchToProps)(AddNew)
+const mapStateToProps = (state) => {
+    return {
+        students: state
+    }
+}
+
+export default connect(mapStateToProps,mapDispatchToProps)(AddNew)

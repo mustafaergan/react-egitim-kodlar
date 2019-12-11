@@ -1,6 +1,7 @@
 import React from 'react'
 import StudentRow from './StudentRow'
 import {connect} from 'react-redux'
+import {removeAction} from '../actions/actions'
 
 class StudentList extends React.Component {
 
@@ -21,29 +22,14 @@ class StudentList extends React.Component {
 
     onEdit (studentId) {
 
-        const editingStudent = this.state.students.find((student) => {
-            return student._id == studentId
-        })
-
-        this.setState(() => {
-            return {
-                editingStudent
-            }
-        })
+        const {history} = this.props
+        history.push('/edit/'+studentId)
     }
 
     onRemove (studentId) {
 
-        this.setState((prevState) => {
-
-            const students = prevState.students.filter((student) => {
-                return student._id != studentId
-            })
-
-            return {
-                students
-            }
-        })
+        const {removeStudent} = this.props
+        removeStudent(studentId)
     }
 
     render () {
@@ -88,5 +74,10 @@ const mapStateToProps = (state) => {
     }
 }
 
-// Higher Order Component
-export default connect(mapStateToProps)(StudentList)
+const mapDispatchToProps = (dispatch) => {
+    return {
+        removeStudent: (removingId) => {dispatch(removeAction(removingId))}
+    }
+}
+
+export default connect(mapStateToProps,mapDispatchToProps)(StudentList)

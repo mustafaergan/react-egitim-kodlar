@@ -21,7 +21,10 @@ const reducer = (state=demoState,action) => {
                 count: state.count-action.decrementBy
             }
 
-        // case 'SQUARE'
+        case 'MULTIPLY':
+            return {
+                count: state.count*action.multiplier
+            }
 
         default:
             return state
@@ -54,5 +57,16 @@ const decrementAction = (decrementBy=1) => {
 }
 
 store.dispatch(decrementAction())
+
+console.log('güncel', store.getState())
+
+const multiplyAction = (multiplier=2) => {
+    return {
+        type: 'MULTIPLY',
+        multiplier
+    }
+}
+
+store.dispatch(multiplyAction(4))
 
 console.log('güncel', store.getState())

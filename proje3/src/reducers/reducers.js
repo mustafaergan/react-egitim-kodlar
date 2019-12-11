@@ -1,3 +1,17 @@
+import uuid from 'uuid'
+
+const demoState = [{
+    _id: uuid(),
+    firstName: "Kaan",
+    lastName: "Ertem",
+    classroom: "arılar"
+},{
+    _id: uuid(),
+    firstName: "Leyla",
+    lastName: "Tekin",
+    classroom: "kelebekler"
+}]
+
 export const studentReducer = (state=demoState,action) => {
 
     switch (action.type) {

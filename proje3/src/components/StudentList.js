@@ -1,95 +1,22 @@
 import React from 'react'
-import uuid from 'uuid'
 import StudentRow from './StudentRow'
-import NewForm from './NewForm'
+import {connect} from 'react-redux'
 
-export default class StudentList extends React.Component {
+class StudentList extends React.Component {
 
     constructor () {
         super()
 
-        this.onSubmit = this.onSubmit.bind(this)
         this.onRemove = this.onRemove.bind(this)
         this.onEdit = this.onEdit.bind(this)
 
         this.state = {
-            students: [{
-                _id: uuid(),
-                firstName: "Kaan",
-                lastName: "Ertem",
-                classroom: "arılar"
-            },{
-                _id: uuid(),
-                firstName: "Leyla",
-                lastName: "Tekin",
-                classroom: "kelebekler"
-            }],
             editingStudent: undefined
         }
     }
 
     componentDidMount () {
-        console.log('students', this.state.students)
-    }
-
-    onSubmit (e) {
-        e.preventDefault()
-
-        const firstName = e.target.elements.firstName.value        
-        const lastName = e.target.elements.lastName.value        
-        const classroom = e.target.elements.classroom.value
-        
-        e.target.elements.firstName.value = ''
-        e.target.elements.lastName.value = ''
-        e.target.elements.classroom.value = ''
-
-        if (this.state.editingStudent == undefined) {
-
-            const newStudent = {
-                _id: uuid(),
-                firstName,
-                lastName,
-                classroom
-            }
-    
-            this.setState((prevState) => {
-                return {
-                    students: [...prevState.students, newStudent]
-                }
-            })
-        } else {
-
-            const editedStudent = {
-                firstName,
-                lastName,
-                classroom
-            }
-    
-            this.setState((prevState) => {
-
-                const students = prevState.students.map((student) => {
-
-                    if (this.state.editingStudent._id == student._id) {
-
-                        const editedItem = {
-                            ...student,
-                            ...editedStudent
-                        }
-
-                        return editedItem
-                    }
-
-                    return student
-                })
-
-                console.log(students)
-
-                return {
-                    students,
-                    editingStudent: undefined
-                }
-            })
-        }
+        console.log('studentlist props', this.props)
     }
 
     onEdit (studentId) {
@@ -121,7 +48,7 @@ export default class StudentList extends React.Component {
 
     render () {
 
-        const {students, editingStudent} = this.state
+        const {students, editingStudent} = this.props
 
         return (
             <>
@@ -154,3 +81,12 @@ export default class StudentList extends React.Component {
         )
     }
 }
+
+const mapStateToProps = (state) => {
+    return {
+        students: state
+    }
+}
+
+// Higher Order Component
+export default connect(mapStateToProps)(StudentList)

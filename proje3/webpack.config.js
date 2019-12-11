@@ -2,7 +2,7 @@ const path = require('path')
 
 module.exports = {
     mode: 'development',
-    entry: './src/demo/reduxStudent.js',
+    entry: './src/app.js',
     output: {
       path: path.resolve(__dirname, 'public'),
       filename: 'script.js'

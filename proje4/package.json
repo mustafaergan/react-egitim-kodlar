@@ -10,7 +10,7 @@
     "build:dev": "webpack",
     "devServer": "webpack-dev-server"
   },
-  "author": "",
+  "author": "Kazım Etiksan",
   "license": "ISC",
   "devDependencies": {
     "@babel/cli": "^7.7.5",

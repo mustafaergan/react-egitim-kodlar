@@ -1,0 +1,13 @@
+{
+    "development": {
+        "PORT": 3000,
+        "MONGODB_URI": "mongodb://pxdb1:0G1TDu3ZWBGoz2Fa0WlLhQ5oDgw0QwxlO6TGhD1geKYsk5zzjsTgOeMdwasPZS3YLuDB3pV5tdWPQEH616nPdQ==@pxdb1.documents.azure.com:10255/?ssl=true&replicaSet=globaldb",
+        "JWT_SECRET": "bir örnek gizli şifre"
+
+    },
+    "test": {
+        "PORT": 3000,
+        "MONGODB_URI": "mongodb://pxdb1:0G1TDu3ZWBGoz2Fa0WlLhQ5oDgw0QwxlO6TGhD1geKYsk5zzjsTgOeMdwasPZS3YLuDB3pV5tdWPQEH616nPdQ==@pxdb1.documents.azure.com:10255/?ssl=true&replicaSet=globaldb",
+        "JWT_SECRET": "bir örnek gizli şifre"
+    }
+}

@@ -4,6 +4,7 @@ import ReactDOM from 'react-dom'
 // ekranlar
 import Dashboard from './components/Dashboard'
 import AddNew from './components/AddNew'
+import SignUp from './components/SignUp'
 import Header from './components/Header'
 
 // router
@@ -46,6 +47,7 @@ const App = (props) => {
                     <Route path="/" component={Dashboard} exact={true} />
                     <Route path="/add" component={AddNew} />
                     <Route path="/edit/:id" component={AddNew} />
+                    <Route path="/signup" component={SignUp} />
                     <Route render={() => {
                         return (<h1>Böyle bir sayfa yok</h1>)
                     }} />

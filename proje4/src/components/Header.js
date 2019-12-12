@@ -7,6 +7,7 @@ export default () => {
         <>
             <NavLink to="/">Anasayfa</NavLink>
             <NavLink to="/add">Yeni Ekle</NavLink>
+            <NavLink to="/signup">Kullanıcı Oluştur</NavLink>
         </>
     )
 }

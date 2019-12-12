@@ -1,5 +1,12 @@
 import uuid from 'uuid'
-import {ADD,EDIT,REMOVE} from '../reducers/identifiers'
+import {ADD,EDIT,REMOVE,SET_ALL} from '../reducers/identifiers'
+
+export const setAllAction = (data) => {
+    return {
+        type: SET_ALL,
+        data
+    }
+}
 
 export const addAction = ({
     firstName='default first',

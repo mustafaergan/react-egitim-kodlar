@@ -1,21 +1,11 @@
-import uuid from 'uuid'
-import {ADD,EDIT,REMOVE} from './identifiers'
-
-// const demoState = [{
-//     _id: uuid(),
-//     firstName: "Kaan",
-//     lastName: "Ertem",
-//     classroom: "arılar"
-// },{
-//     _id: uuid(),
-//     firstName: "Leyla",
-//     lastName: "Tekin",
-//     classroom: "kelebekler"
-// }]
+import {ADD,EDIT,REMOVE,SET_ALL} from './identifiers'
 
 export const studentReducer = (state=[],action) => {
 
     switch (action.type) {
+
+        case SET_ALL:
+            return action.data
 
         case ADD:
             return [...state, action.data]

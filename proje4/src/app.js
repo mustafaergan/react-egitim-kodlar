@@ -12,13 +12,14 @@ import {BrowserRouter,Route,Switch} from 'react-router-dom'
 // redux
 import {Provider} from 'react-redux'
 import {configureStore} from './store/configureStore'
+import {setAllAction} from './actions/actions'
 
 // axios
 import axios from 'axios'
 
 const store = configureStore()
 
-const App = () => {
+const App = (props) => {
 
     useEffect(() => {
         const url = 'https://std02.herokuapp.com'
@@ -26,7 +27,7 @@ const App = () => {
         axios.get(url+'/api/student')
         .then((response) => {
 
-            console.log(response.data)
+            store.dispatch(setAllAction(response.data.list))
         })
         .catch((err) => {
 

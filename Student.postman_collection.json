@@ -1,0 +1,287 @@
+{
+	"info": {
+		"_postman_id": "43bafe74-31aa-458a-91b4-f3dd5675d5bd",
+		"name": "Student",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "POST new student",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"firstName\": \"Hasan\",\n\t\"lastName\": \"Demir\",\n\t\"classroom\": \"arılar\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{url}}/api/student",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"api",
+						"student"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "GET all students",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"type": "text",
+						"value": "application/json"
+					}
+				],
+				"url": {
+					"raw": "{{url}}/api/student",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"api",
+						"student"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "DELETE student",
+			"request": {
+				"method": "DELETE",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"type": "text",
+						"value": "application/json"
+					}
+				],
+				"url": {
+					"raw": "{{url}}/api/student/5dd7c2b084f8830017cbea6e",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"api",
+						"student",
+						"5dd7c2b084f8830017cbea6e"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "PATCH student",
+			"request": {
+				"method": "PATCH",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"type": "text",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"firstName\": \"Hasan\",\n\t\"lastName\": \"Demir\",\n\t\"classroom\": \"arılar\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{url}}/api/student/5dd7c2b084f8830017cbea6e",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"api",
+						"student",
+						"5dd7c2b084f8830017cbea6e"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "POST new user",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "f8958ae6-2111-4706-ac10-a0a967254a93",
+						"exec": [
+							"var token = postman.getResponseHeader('xAuth');",
+							"postman.setEnvironmentVariable('xAuth', token);"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"type": "text",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"email\": \"ates@etiksan.com\",\n\t\"password\": \"1234\",\n\t\"name\": \"Ateş Etiksan\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{url}}/api/users",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"api",
+						"users"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "POST login",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "463b4911-bbd6-4cb5-8341-258b91fc7551",
+						"exec": [
+							"var token = postman.getResponseHeader('xAuth');",
+							"postman.setEnvironmentVariable('xAuth', token);"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"type": "text",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"email\": \"ates@etiksan.com\",\n\t\"password\": \"1234\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{url}}/api/users/login",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"api",
+						"users",
+						"login"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "POST logout",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"type": "text",
+						"value": "application/json"
+					},
+					{
+						"key": "xAuth",
+						"value": "{{xAuth}}",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "{{url}}/api/users/logout",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"api",
+						"users",
+						"logout"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "GET me",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"type": "text",
+						"value": "application/json"
+					},
+					{
+						"key": "xAuth",
+						"type": "text",
+						"value": "{{xAuth}}"
+					}
+				],
+				"url": {
+					"raw": "{{url}}/api/users/me",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"api",
+						"users",
+						"me"
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"protocolProfileBehavior": {}
+}

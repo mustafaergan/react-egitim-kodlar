@@ -29,7 +29,7 @@ export const asyncAddAction = ({
 }={},callback) => {
     return (dispatch) => {
 
-        axios.post('https://std02.herokuapp.com/api/student',{
+        axios.post('/api/student',{
             firstName,
             lastName,
             classroom

@@ -1,7 +1,7 @@
 import React from 'react'
 import NewForm from './NewForm'
 import {connect} from 'react-redux'
-import {addAction,editAction} from '../actions/actions'
+import {asyncAddAction,addAction,editAction} from '../actions/actions'
 
 class AddNew extends React.Component {
 
@@ -34,15 +34,15 @@ class AddNew extends React.Component {
 
         if (editingId == undefined) {
 
-            addNewStudent(data)
+            addNewStudent(data,(newStudent) => {
+                console.log(newStudent)
+                history.push('/')
+            })
             
         } else {
 
             editStudent(editingId,data)
         }
-
-
-        history.push('/')
     }
 
     componentDidMount () {
@@ -71,7 +71,7 @@ class AddNew extends React.Component {
 
 const mapDispatchToProps = (dispatch) => {
     return {
-        addNewStudent: (data) => {dispatch(addAction(data))},
+        addNewStudent: (data,callback) => {dispatch(asyncAddAction(data,callback))},
         editStudent: (editingId,data) => {dispatch(editAction(editingId,data))}
     }
 }

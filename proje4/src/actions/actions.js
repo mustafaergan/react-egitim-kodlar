@@ -1,5 +1,6 @@
 import uuid from 'uuid'
 import {ADD,EDIT,REMOVE,SET_ALL} from '../reducers/identifiers'
+import axios from 'axios'
 
 export const setAllAction = (data) => {
     return {
@@ -8,19 +9,39 @@ export const setAllAction = (data) => {
     }
 }
 
-export const addAction = ({
+export const asyncAddAction = ({
     firstName='default first',
     lastName='default last',
     classroom='arılar'
-}={}) => {
-    return {
-        type: ADD,
-        data: {
-            _id: uuid(),
+}={},callback) => {
+    return (dispatch) => {
+
+        axios.post('https://std02.herokuapp.com/api/student',{
             firstName,
             lastName,
             classroom
-        }
+        })
+        .then((response) => {
+            dispatch(addAction(response.data.data[0]))
+            callback(response.data.data[0])
+        })
+
+        // setTimeout(() => {
+
+        //     dispatch(addAction({
+        //         firstName,
+        //         lastName,
+        //         classroom
+        //     }))
+
+        // }, 3000)
+    }
+}
+
+export const addAction = (data) => {
+    return {
+        type: ADD,
+        data
     }
 }
 

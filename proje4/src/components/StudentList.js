@@ -40,6 +40,8 @@ class StudentList extends React.Component {
             <>
                 <div>
                     <div>
+                    {
+                        students.length > 0 ? // Conditional Rendering
                         <table>
                             <tbody>
                                 <tr>
@@ -61,6 +63,9 @@ class StudentList extends React.Component {
                                 }
                             </tbody>
                         </table>
+                        :
+                        <div>Loading..</div>
+                    }
                     </div>
                 </div>
             </>

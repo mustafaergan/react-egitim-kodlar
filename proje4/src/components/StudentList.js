@@ -1,7 +1,18 @@
 import React from 'react'
 import StudentRow from './StudentRow'
 import {connect} from 'react-redux'
-import {removeAction} from '../actions/actions'
+import {asyncRemoveAction} from '../actions/actions'
+import { makeStyles } from '@material-ui/core/styles';
+import {CircularProgress,Button} from '@material-ui/core';
+
+const useStyles = makeStyles(theme => ({
+    root: {
+      display: 'flex',
+      '& > * + *': {
+        marginLeft: theme.spacing(2),
+      },
+    },
+  }));
 
 class StudentList extends React.Component {
 
@@ -64,7 +75,7 @@ class StudentList extends React.Component {
                             </tbody>
                         </table>
                         :
-                        <div>Loading..</div>
+                        <CircularProgress />
                     }
                     </div>
                 </div>
@@ -81,7 +92,7 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
     return {
-        removeStudent: (removingId) => {dispatch(removeAction(removingId))}
+        removeStudent: (removingId) => {dispatch(asyncRemoveAction(removingId))}
     }
 }
 

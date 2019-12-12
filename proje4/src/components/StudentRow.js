@@ -1,4 +1,5 @@
 import React from 'react'
+import {Button} from '@material-ui/core'
 
 export default (props) => {
 
@@ -10,14 +11,14 @@ export default (props) => {
             <td>{student.lastName}</td>
             <td>{student.classroom}</td>
             <td>
-                <button onClick={() => {
+                <Button onClick={() => {
                     onRemove(student._id)
-                }}>SİL</button>
+                }}>SİL</Button>
             </td>
             <td>
-            <button onClick={() => {
+            <Button onClick={() => {
                     onEdit(student._id)
-                }}>EDIT</button>
+                }}>EDIT</Button>
             </td>
         </tr>
     )

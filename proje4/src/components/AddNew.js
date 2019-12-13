@@ -1,7 +1,7 @@
 import React from 'react'
 import NewForm from './NewForm'
 import {connect} from 'react-redux'
-import {asyncEditAction,asyncAddAction} from '../actions/actions'
+import * as action from '../actions/actions'
 
 class AddNew extends React.Component {
 
@@ -71,8 +71,8 @@ class AddNew extends React.Component {
 
 const mapDispatchToProps = (dispatch) => {
     return {
-        addNewStudent: (data,callback) => {dispatch(asyncAddAction(data,callback))},
-        editStudent: (editingId,data) => {dispatch(asyncEditAction(editingId,data))}
+        addNewStudent: (data,callback) => {dispatch(action.asyncAddAction(data,callback))},
+        editStudent: (editingId,data) => {dispatch(action.asyncEditAction(editingId,data))}
     }
 }
 

@@ -9,3 +9,5 @@ if (env === 'development' || env === 'test') {
     process.env[key] = envConfig[key];
   });
 }
+
+// https://www.egitimtakvimi.com/Egitim/BeginSurvey?type=Private&surveyNumber=9c7acf

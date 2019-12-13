@@ -1,0 +1,22 @@
+Open heroku.com on Chrome or Firefox browser and login (or open any other site that uses https (e.g. google.com)).
+
+Right-click the lock and click Certificate to view certificate issuer details.
+
+Open the Certification Path tab.
+
+Choose the first certificate that appears at the top of the list and press the Show Certificate button.
+
+Open the Details tab and click the Copy to File ... button.
+
+Choose base64 encoded X.509 format (* .cer) and click Next button.
+
+Click the Browse button and enter a location and file name. Remember to save with the extension "cer". Example: D: \Users\uendel\Desktop\proxy.cer
+
+Close the windows and open the Windows command prompt and run the following command line (replace the location with the path where you saved the certificate):
+
+SET NODE_EXTRA_CA_CERTS=D:\Users\uendel\Desktop\heroku.cer
+
+Revert to the old OpenSSL behaviour:
+
+git config --global http.sslBackend "openssl"
+git config --global http.sslCAInfo D:\Users\uendel\Desktop\heroku.cer

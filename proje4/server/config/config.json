@@ -1,13 +1,13 @@
 {
     "development": {
         "PORT": 3000,
-        "MONGODB_URI": "mongodb://pxdb1:0G1TDu3ZWBGoz2Fa0WlLhQ5oDgw0QwxlO6TGhD1geKYsk5zzjsTgOeMdwasPZS3YLuDB3pV5tdWPQEH616nPdQ==@pxdb1.documents.azure.com:10255/?ssl=true&replicaSet=globaldb",
+        "MONGODB_URI": "mongodb://heroku_79xwrm0b:i2lvt1dmantpu2hqadstse7et3@ds243148.mlab.com:43148/heroku_79xwrm0b",
         "JWT_SECRET": "bir örnek gizli şifre"
 
     },
     "test": {
         "PORT": 3000,
-        "MONGODB_URI": "mongodb://pxdb1:0G1TDu3ZWBGoz2Fa0WlLhQ5oDgw0QwxlO6TGhD1geKYsk5zzjsTgOeMdwasPZS3YLuDB3pV5tdWPQEH616nPdQ==@pxdb1.documents.azure.com:10255/?ssl=true&replicaSet=globaldb",
+        "MONGODB_URI": "mongodb://heroku_79xwrm0b:i2lvt1dmantpu2hqadstse7et3@ds243148.mlab.com:43148/heroku_79xwrm0b",
         "JWT_SECRET": "bir örnek gizli şifre"
     }
 }

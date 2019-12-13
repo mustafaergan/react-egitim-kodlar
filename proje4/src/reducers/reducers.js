@@ -32,3 +32,19 @@ export const studentReducer = (state=[],action) => {
             return state
     }
 }
+
+export const filterReducer = (state={
+    sortBy: 'classroom'
+},action) => {
+
+    switch (action.type) {
+
+        case 'SORT':
+            return {
+                sortBy: action.sortBy
+            }
+
+        default: 
+            return state
+    }
+}

@@ -19,7 +19,7 @@ const SignIn = () => {
 
         setErrorText('')
 
-        axios.post('https://std02.herokuapp.com/api/users/login',{
+        axios.post('/api/users/login',{
             email,
             password
         })

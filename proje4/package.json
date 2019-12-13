@@ -9,7 +9,8 @@
     "live": "live-server public",
     "build:dev": "webpack",
     "build:prod": "webpack --env production",
-    "devServer": "webpack-dev-server"
+    "devServer": "webpack-dev-server",
+    "start": "node server/server.js"
   },
   "author": "Kazım Etiksan",
   "license": "ISC",

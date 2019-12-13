@@ -22,9 +22,9 @@ const publicPath = path.join(__dirname, '..', 'public')
 app.use(express.static(publicPath))
 
 app.use(bodyParser.json())
-app.use(cors({
-  exposedHeaders: ['Xauth']
-}))
+// app.use(cors({
+//   exposedHeaders: ['Xauth']
+// }))
 
 app.post('/api/users/login', (req, res) => {
 

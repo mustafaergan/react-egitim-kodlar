@@ -1,19 +1,20 @@
-proje1/node_modules
-proje1/package-lock.json
-proje1/public/script.js
+# Bağımlılıklar
+node_modules/
+package-lock.json
 
-proje2/node_modules
-proje2/package-lock.json
-proje4/public/script.js
+# Babel / webpack çıktıları
+proje1/script.js
+proje2/script.js
+proje*/public/script.js
+proje*/public/script.js.LICENSE
+dist/
 
-proje3/node_modules
-proje3/package-lock.json
-proje4/public/script.js
+# Ortam değişkenleri ve loglar
+.env
+*.log
 
-proje4/node_modules
-proje4/package-lock.json
-proje4/public/script.js
-
-proje5/node_modules
-proje5/package-lock.json
-proje5/public/script.js
+# Editör ve işletim sistemi dosyaları
+.idea/
+.vscode/
+.DS_Store
+Thumbs.db

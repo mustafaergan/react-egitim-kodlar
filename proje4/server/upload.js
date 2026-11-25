@@ -3,17 +3,18 @@ const multerS3 = require('multer-s3');
 const aws = require('aws-sdk');
 const randomstring = require('randomstring');
 
+// Kimlik bilgileri koda yazılmaz; ortam değişkenlerinden okunur.
 aws.config.update({
-  secretAccessKey: "AWS_GIZLI_ANAHTAR_KALDIRILDI",
-  accessKeyId: "AWS_ERISIM_ANAHTARI_KALDIRILDI",
-  region: 'us-east-1'
+  secretAccessKey: process.env.AWS_SECRET_ACCESS_KEY,
+  accessKeyId: process.env.AWS_ACCESS_KEY_ID,
+  region: process.env.AWS_REGION || 'us-east-1'
 });
 const s3 = new aws.S3();
 
 const upload = multer({
   storage: multerS3({
     s3: s3,
-    bucket: 'yeditepe',
+    bucket: process.env.S3_BUCKET || 'yeditepe',
     acl: 'public-read',
     metadata: function (req, file, cb) {
 
